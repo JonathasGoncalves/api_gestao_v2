@@ -17,7 +17,7 @@ use Auth;
 
 class TecnicoController extends Controller
 {
-   public function store(Request $request)
+    public function store(Request $request)
     {
         try {
             DB::beginTransaction();
@@ -36,12 +36,11 @@ class TecnicoController extends Controller
             }
             return response()->json(ApiError::errorMassage('Error ao inserir o tecnico', 1010));
         }
-    } 
-
-    //RETORNA O TÉCNICO LOGADO
-    public function userLogged() {
-        return Auth::user();
     }
 
+    //RETORNA O TÉCNICO LOGADO
+    public function userLogged()
+    {
+        return Auth::user();
+    }
 }
-
