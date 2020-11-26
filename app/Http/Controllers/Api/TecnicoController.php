@@ -19,11 +19,12 @@ class TecnicoController extends Controller
 {
     public function store(Request $request)
     {
+
         try {
             DB::beginTransaction();
             $TecnicoData = $request->all();
             $tecnico_new =  Tecnico::create([
-                'name' => $TecnicoData['nome'],
+                'name' => $TecnicoData['name'],
                 'email' => $TecnicoData['email'],
                 'password' => Hash::make($TecnicoData['password']),
             ]);
