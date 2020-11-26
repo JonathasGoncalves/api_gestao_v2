@@ -1,0 +1,10 @@
+Carregar Agenda:
+   Resouce de Evento_agenda com:
+	* Nome Cooperado
+	* Tanque
+	* Latão
+	* Relatório
+	* Data
+	* Nome Técnico
+	* Realizada
+	* Aproveitamento
