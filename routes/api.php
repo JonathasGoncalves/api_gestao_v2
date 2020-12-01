@@ -29,4 +29,8 @@ Route::namespace('Api')->name('api.')->group(function () {
         //CADASTRAR TÉCNICO
         Route::post('/novo_tecnico', 'TecnicoController@store')->name('novo_tecnico');
     });
+    Route::prefix('evento')->group(function () {
+        //RECUPERAR TÉCNICO LOGADO
+        Route::post('/carregar_agenda', 'evento_agenda_controller@carregar_agenda')->name('carregar_agenda');
+    });
 });

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTecnicosTable extends Migration
+class CreateFormularioTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateTecnicosTable extends Migration
      */
     public function up()
     {
-        Schema::create('tecnicos', function (Blueprint $table) {
+        Schema::create('formulario', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->charset = 'utf8mb4';
             $table->increments('id');
-            $table->string('name')->unique();
-            $table->string('email');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('Titulo');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateTecnicosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tecnicos');
+        Schema::dropIfExists('formulario');
     }
 }
