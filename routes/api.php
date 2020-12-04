@@ -30,7 +30,13 @@ Route::namespace('Api')->name('api.')->group(function () {
         Route::post('/novo_tecnico', 'TecnicoController@store')->name('novo_tecnico');
     });
     Route::prefix('evento')->group(function () {
-        //RECUPERAR TÉCNICO LOGADO
+        //RETORNA TODOS OS EVENTOS APÓS A DATA INFORMADA
         Route::post('/carregar_agenda', 'evento_agenda_controller@carregar_agenda')->name('carregar_agenda');
+        
+    });
+    Route::prefix('cooperado')->group(function () {
+        //RETORNA TODOS OS EVENTOS APÓS A DATA INFORMADA
+        Route::post('/relatorio_qualidade', 'cooperado_controller@relatorio_qualidade')->name('relatorio_qualidade');
+        
     });
 });
