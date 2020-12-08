@@ -9,12 +9,30 @@ Carregar Agenda:
 	* Realizada -
 	* Aproveitamento -
    Resource de relatório
-	* Nome Cooperado
+	* Nome Cooperado-
 	* Tanque -
 	* Latão -
-	* Municipio
+	* Municipio-
 	* CBT
 	* CCS
 
 
-https://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_5.0-1%2Bxenial_all.deb
+sudo apt-get remove zabbix-frontend-php
+sudo apt-get remove --auto-remove zabbix-frontend-php 
+sudo apt-get purge zabbix-frontend-php    
+sudo apt-get purge --auto-remove zabbix-frontend-php  
+sudo apt-get remove zabbix-agent                        
+sudo apt-get remove --auto-remove zabbix-agent
+sudo apt-get purge zabbix-agent 
+sudo apt-get purge --auto-remove zabbix-agent 
+sudo apt-get remove zabbix-server-mysql    
+sudo apt-get autoremove zabbix-server-mysql  
+sudo apt-get purge zabbix-server-mysql    
+sudo apt-get autoremove --purge zabbix-server-mysql 
+sudo apt-get remove zabbix-server-mysql 
+sudo apt-get autoremove zabbix-server-mysql 
+rm -rf /etc/zabbix  
+rm /etc/init.d/zabbix-* 
+sudo reboot now
+
+rm -frv /var/lib/dpkg/info/*.*; apt-get install -y -f

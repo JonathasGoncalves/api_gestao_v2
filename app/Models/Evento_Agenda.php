@@ -51,4 +51,42 @@ class Evento_Agenda extends Model
             ->get();
         return $eventos;
     }
+
+    public function ListarEventos($formulario)
+    {
+        $cooperados = DB::table('cooperados')
+            ->select('cooperados.codigo_cacal', 'cooperados.nome');
+
+        $todos = DB::table('associados')
+            ->select('associados.CODIGO_CACAL', 'associados.NOME')
+            ->union($cooperados);
+
+        $eventos = DB::table('evento_agenda')
+            ->select(
+                'evento_agenda.data',
+                'submissao.aproveitamento',
+                'submissao.realizada',
+                'tecnicos.name',
+                'todos.nome',
+                'tanques.tanque',
+                'tanques.latao',
+                'formulario.Titulo'
+            )
+            ->join('submissao', 'evento_agenda.submissao_id', '=', 'submissao.id')
+            ->join('tecnicos', 'evento_agenda.tecnico_id', '=', 'tecnicos.id')
+            ->join('tanques', 'submissao.tanque_id', '=', 'tanques.id')
+            ->join('opcao_pergunta_submissao', 'submissao.id', '=', 'opcao_pergunta_submissao.submissao_id')
+            ->join('opcao_pergunta', 'opcao_pergunta_submissao.opcao_pergunta_id', '=', 'opcao_pergunta.id')
+            ->join('pergunta', 'opcao_pergunta.pergunta_id', '=', 'pergunta.id')
+            ->join('formulario', 'pergunta.formulario_id', '=', 'formulario.id')
+            ->joinSub($todos, 'todos', function ($join) {
+                $join->on('tanques.codigo', '=', 'todos.codigo_cacal');
+            })
+            ->where('formulario.id', '>=', $formulario)
+            ->distinct()
+            ->get();
+        return $eventos;
+    }
+
+    
 }
