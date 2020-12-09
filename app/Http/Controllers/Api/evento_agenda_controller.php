@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Resources\EventoAgenda;
+use App\Http\Resources\EventoAgenda; 
+use App\Http\Resources\EventoAgendaExibir;
 use App\Models\Evento_Agenda;
 use App\Models\Formulario;
 
@@ -42,7 +43,7 @@ class evento_agenda_controller extends Controller
 
     //Retorna um evento completo para exibição
     public function exibir_evento(Request $request) {
-        $data = ['evento' => new EventoAgenda(Evento_Agenda::find($request->id_evento))];
+        $data = ['evento' => new EventoAgendaExibir(Evento_Agenda::find($request->id_evento))];
         return response()->json($data);
     }
 }

@@ -1,20 +1,21 @@
 Carregar Agenda:
    Resouce de Evento_agenda com:
 	* Nome Cooperado
-	* Tanque -
-	* Latão -
-	* Relatório -
-	* Data -
-	* Nome Técnico - 
-	* Realizada -
-	* Aproveitamento -
+	* Tanque 
+	* Latão 
+	* Relatório 
+	* Data 
+	* Nome Técnico  
+	* Realizada 
+	* Aproveitamento 
    Resource de relatório
-	* Nome Cooperado-
-	* Tanque -
-	* Latão -
-	* Municipio-
+	* Nome Cooperado
+	* Tanque 
+	* Latão 
+	* Municipio
 	* CBT
 	* CCS
+
 
 
 sudo apt-get remove zabbix-frontend-php

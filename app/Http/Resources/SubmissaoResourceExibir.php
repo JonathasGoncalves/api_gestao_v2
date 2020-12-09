@@ -15,7 +15,7 @@ class SubmissaoResourceExibir extends JsonResource
     public function toArray($request)
     {
         return [
-            'DataSubmissao'     => $this->DataSubmissao,
+            'data_submissao'    => $this->data_submissao,
             'qualidade'         => new QualidadeResource($this->Qualidade),
             'Respostas'         => OpcaoPerguntaResource::collection($this->OpcaoPergunta),
             'observacoes'       => RespostaObservacaoResource::collection($this->RespostaObservacao),

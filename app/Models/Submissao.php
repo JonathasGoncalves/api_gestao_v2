@@ -26,4 +26,14 @@ class Submissao extends Model
         return $this->hasMany(RespostaObservacao::class, 'submissao_id', 'id');
     }
 
+     /**
+     * Submissão tem uma qualidade
+     */
+    public function Qualidade()
+    {
+        return $this->hasOne(Qualidade::class, 'id', 'qualidade_id');
+    }
+
+    
+
 }

@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TecnicoResourceExibir extends JsonResource
+class AssociadoResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,7 +15,8 @@ class TecnicoResourceExibir extends JsonResource
     public function toArray($request)
     {
         return [
-            'nome'      => $this->name,
+            'nome'          => mb_convert_encoding(ucwords(strtolower(trim($this->nome))), 'UTF-8', 'UTF-8'),
+            'municipio'     => ucwords(strtolower(trim($this->MUNICIPIO))),
         ];
     }
 }

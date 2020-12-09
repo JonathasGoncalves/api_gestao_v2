@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TecnicoResourceExibir extends JsonResource
+class TemaResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,7 +15,7 @@ class TecnicoResourceExibir extends JsonResource
     public function toArray($request)
     {
         return [
-            'nome'      => $this->name,
+            'nome'      => $this->nome,
         ];
     }
 }
