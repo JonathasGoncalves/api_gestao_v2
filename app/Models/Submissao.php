@@ -33,7 +33,4 @@ class Submissao extends Model
     {
         return $this->hasOne(Qualidade::class, 'id', 'qualidade_id');
     }
-
-    
-
 }

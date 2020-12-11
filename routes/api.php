@@ -36,11 +36,14 @@ Route::namespace('Api')->name('api.')->group(function () {
         Route::get('/listar_formularios', 'evento_agenda_controller@listar_formularios')->name('listar_formularios');        
         //LISTAR OS EVENTOS POR TIPO DE FORMULARIO
         Route::post('/listar_eventos', 'evento_agenda_controller@listar_eventos')->name('listar_eventos');
-        //Retorna um evento completo para exibição
+        //RETORNA UM EXEMPLO COMPLETO PARA EXIBIÇÃO
         Route::post('/exibir_evento', 'evento_agenda_controller@exibir_evento')->name('exibir_evento');
     });
     Route::prefix('cooperado')->group(function () {
-        //RETORNA TODOS OS EVENTOS APÓS A DATA INFORMADA
+        //RETORNA A QUALIDADE DOS COOPERADOS BASEADO NOS PARAMETROS 
+        //EXEMPLO: data_referencia: 201701, relatorio: cbt, filtro: >, padrao: 300
         Route::post('/relatorio_qualidade', 'cooperado_controller@relatorio_qualidade')->name('relatorio_qualidade');
+        //GERA ARQUIVO EXCEL COM AS QUALIDADES BASEADO NOS PARAMETROS
+        Route::post('/gerar_excel_qualidade', 'cooperado_controller@gerar_excel_qualidade')->name('gerar_excel_qualidade');
     });
 });

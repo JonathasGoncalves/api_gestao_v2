@@ -28,14 +28,15 @@ class Cooperado extends Model
 
         $qualidades = DB::table('tanques')
         ->select(
+                'tanques.id',
                 'todos.nome',
+                'todos.CODIGO_CACAL',
                 'todos.MUNICIPIO',
                 'tanques.tanque',
                 'tanques.latao',
                 'qualidade-leite.cbt',
                 'qualidade-leite.ccs',
             )
-        //->select(DB::raw('CONCAT(qualidade-leite.id, tanque.id) as chave'),'qualidade-leite.tanque', 'todos.codigo', 'todos.codigo_cacal', 'todos.nome', 'todos.MUNICIPIO', 'tanques.id', 'qualidade-leite.cbt', 'qualidade-leite.ccs', 'qualidade-leite.zle_dtfim', 'tanques.id' , 'qualidade-leite.id')
         ->join('qualidade-leite', 'tanques.tanque', '=', 'qualidade-leite.tanque')
         ->when($filtroPadrao, function ($q) use ($relatorio, $padrao, $data_referencia) {
             return $q->where($relatorio, '<=', $padrao)->where('zle_dtfim', '=', $data_referencia);
@@ -48,6 +49,7 @@ class Cooperado extends Model
             $join->on('tanques.codigo', '=', 'todos.codigo_cacal');
         })
         ->distinct()
+        ->orderBy('todos.nome')
         ->get();
         
         return $qualidades;
