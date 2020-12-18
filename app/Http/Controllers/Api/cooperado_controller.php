@@ -40,4 +40,11 @@ class cooperado_controller extends Controller
         return response()->json($criado);
     }
 
+    //LISTA TODOS OS COOPERADOS
+    public function listar_cooperados()
+    {
+        $data = ['cooperados' => RelatorioQualidade::collection($this->cooperado->listar_cooperados_todos())];
+        return response()->json($data);
+    }
+
 }

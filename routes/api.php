@@ -45,5 +45,11 @@ Route::namespace('Api')->name('api.')->group(function () {
         Route::post('/relatorio_qualidade', 'cooperado_controller@relatorio_qualidade')->name('relatorio_qualidade');
         //GERA ARQUIVO EXCEL COM AS QUALIDADES BASEADO NOS PARAMETROS
         Route::post('/gerar_excel_qualidade', 'cooperado_controller@gerar_excel_qualidade')->name('gerar_excel_qualidade');
+        //RETORNA TODOS OS COOPERADOS
+        Route::get('/listar_cooperados', 'cooperado_controller@listar_cooperados')->name('listar_cooperados');
+    });
+    Route::prefix('projeto')->group(function () {
+        //LISTA OS PROJETOS EM ABERTO
+        Route::get('/listar_projeto_abertos', 'projeto_controller@listar_projeto_abertos')->name('listar_projeto_abertos');
     });
 });

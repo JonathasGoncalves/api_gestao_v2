@@ -17,7 +17,6 @@ Carregar Agenda:
 	* CCS
 
 
-
 sudo apt-get remove zabbix-frontend-php
 sudo apt-get remove --auto-remove zabbix-frontend-php 
 sudo apt-get purge zabbix-frontend-php    
