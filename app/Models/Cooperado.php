@@ -66,6 +66,7 @@ class Cooperado extends Model
         ->union($cooperados);
 
         $cooperados_todos = DB::table('tanques')
+        
         ->select(
                 'tanques.id',
                 'todos.nome',
@@ -73,7 +74,7 @@ class Cooperado extends Model
                 'todos.MUNICIPIO',
                 'tanques.tanque',
                 'tanques.latao',
-                'qualidade-leite.cbt',
+                DB::raw('MAX(cbt) as cbt'),
                 'qualidade-leite.ccs',
             )
         ->join('qualidade-leite', 'tanques.tanque', '=', 'qualidade-leite.tanque')
@@ -82,6 +83,7 @@ class Cooperado extends Model
             $join->on('tanques.codigo', '=', 'todos.codigo_cacal');
         })
         ->distinct()
+        ->groupBy('id', 'nome', 'CODIGO_CACAL', 'MUNICIPIO', 'tanque', 'latao', 'ccs')
         ->orderBy('todos.nome')
         ->get();
         
