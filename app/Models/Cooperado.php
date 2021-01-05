@@ -27,16 +27,6 @@ class Cooperado extends Model
         ->union($cooperados);
 
         $qualidades = DB::table('tanques')
-        ->select(
-                'tanques.id',
-                'todos.nome',
-                'todos.CODIGO_CACAL',
-                'todos.MUNICIPIO',
-                'tanques.tanque',
-                'tanques.latao',
-                'qualidade-leite.cbt',
-                'qualidade-leite.ccs',
-            )
         ->join('qualidade-leite', 'tanques.tanque', '=', 'qualidade-leite.tanque')
         ->when($filtroPadrao, function ($q) use ($relatorio, $padrao, $data_referencia) {
             return $q->where($relatorio, '<=', $padrao)->where('zle_dtfim', '=', $data_referencia);
@@ -48,6 +38,16 @@ class Cooperado extends Model
         ->joinSub($todos, 'todos', function ($join) {
             $join->on('tanques.codigo', '=', 'todos.codigo_cacal');
         })
+        ->select(
+                'tanques.id',
+                'todos.nome',
+                'todos.CODIGO_CACAL',
+                'todos.MUNICIPIO',
+                'tanques.tanque',
+                'tanques.latao',
+                'qualidade-leite.cbt',
+                'qualidade-leite.ccs'
+            )
         ->distinct()
         ->orderBy('todos.nome')
         ->get();
