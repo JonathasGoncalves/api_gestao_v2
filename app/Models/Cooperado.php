@@ -58,38 +58,38 @@ class Cooperado extends Model
     public function listar_cooperados_todos()
     {
 
+        //BUSCAR A DATA MAIS RECENTE DE QUALIDADE
+        $data = DB::table('qualidade-leite')
+            ->select(DB::raw('MAX(zle_dtfim) as zle_dtfim'))
+            ->get();
+
         $cooperados = DB::table('cooperados')
             ->select('cooperados.codigo_cacal', 'cooperados.nome', 'cooperados.MUNICIPIO');
-
         $todos = DB::table('associados')
         ->select('associados.CODIGO_CACAL', 'associados.NOME', 'associados.MUNICIPIO')
         ->union($cooperados);
-
         $cooperados_todos = DB::table('tanques')
-        
-        ->select(
+        ->join('qualidade-leite', 'tanques.tanque', '=', 'qualidade-leite.tanque')
+        //->where($relatorio, '>=', $padrao)
+        ->joinSub($todos, 'todos', function ($join) {
+            $join->on('tanques.codigo', '=', 'todos.codigo_cacal');
+        })
+         ->select(
                 'tanques.id',
                 'todos.nome',
                 'todos.CODIGO_CACAL',
                 'todos.MUNICIPIO',
                 'tanques.tanque',
                 'tanques.latao',
-                DB::raw('MAX(cbt) as cbt'),
-                'qualidade-leite.ccs',
+                'qualidade-leite.cbt',
+                'qualidade-leite.ccs'
             )
-        ->join('qualidade-leite', 'tanques.tanque', '=', 'qualidade-leite.tanque')
-        //->where($relatorio, '>=', $padrao)
-        ->joinSub($todos, 'todos', function ($join) {
-            $join->on('tanques.codigo', '=', 'todos.codigo_cacal');
-        })
         ->distinct()
-        ->groupBy('id', 'nome', 'CODIGO_CACAL', 'MUNICIPIO', 'tanque', 'latao', 'ccs')
+        ->where('qualidade-leite.zle_dtfim', '=', $data[0]->zle_dtfim)
         ->orderBy('todos.nome')
         ->get();
         
         return $cooperados_todos;
     }
-
 }
 
-////teste
