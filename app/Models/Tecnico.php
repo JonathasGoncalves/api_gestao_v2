@@ -13,7 +13,7 @@ class Tecnico extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
-        'nome',
+        'name',
         'email',
         'password',
     ];
