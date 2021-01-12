@@ -11,7 +11,6 @@ use Laravel\Passport\HasApiTokens;
 class Tecnico extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    protected $table = 'tecnico';
 
     protected $fillable = [
         'nome',
@@ -31,6 +30,6 @@ class Tecnico extends Authenticatable
     //DEFININDO QUE A BUSCA É FEITA POR NOME E NÃO POR E-MAIL
     public function findForPassport($name)
     {
-        return $this->where('nome', $name)->first();
+        return $this->where('name', $name)->first();
     }
 }
