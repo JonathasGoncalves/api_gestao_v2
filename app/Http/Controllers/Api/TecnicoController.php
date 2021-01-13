@@ -33,9 +33,9 @@ class TecnicoController extends Controller
         } catch (Exception $e) {
             DB::rollback();
             if (config('app.debug')) {
-                return response()->json(ApiError::errorMassage($e, 1010));
+                return response()->json(ApiError::errorMassage($e, 4000));
             }
-            return response()->json(ApiError::errorMassage('Error ao inserir o tecnico', 1010));
+            return response()->json(ApiError::errorMassage('Error ao inserir o tecnico', 4000));
         }
     }
 
