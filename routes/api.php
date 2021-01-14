@@ -39,7 +39,7 @@ Route::namespace('Api')->name('api.')->group(function () {
         //RETORNA UM EXEMPLO COMPLETO PARA EXIBIÇÃO
         Route::post('/exibir_evento', 'evento_agenda_controller@exibir_evento')->name('exibir_evento');
         //AGENDAR EVENTO
-        //Route::post('/agendar_evento', 'evento_agenda_controller@agendar_evento')->name('agendar_evento');
+        Route::post('/agendar_evento', 'evento_agenda_controller@agendar_evento')->name('agendar_evento');
         //ENVIAR SUBMISSAO AO EVENTO
         //Route::post('/submeter_evento', 'evento_agenda_controller@submeter_evento')->name('submeter_evento');
     });

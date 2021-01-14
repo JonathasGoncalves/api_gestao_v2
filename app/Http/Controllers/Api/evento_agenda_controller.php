@@ -8,7 +8,7 @@ use App\Http\Resources\EventoAgenda;
 use App\Http\Resources\EventoAgendaExibir;
 use App\Models\Evento_Agenda;
 use App\Models\Formulario;
-
+use App\Models\Submissao;
 
 
 class evento_agenda_controller extends Controller
@@ -47,5 +47,40 @@ class evento_agenda_controller extends Controller
     public function exibir_evento(Request $request) {
         $data = ['evento' => new EventoAgendaExibir(Evento_Agenda::find($request->id_evento))];
         return response()->json($data);
+    }
+
+    //Cria um novo evento para a agenda
+    public function agendar_evento(Request $request) {
+
+        try {
+            DB::beginTransaction();
+            $Evento_all = $request->all();
+            //criando submissao pertencete a este evento
+            $submissao =  Submissao::create([
+                'DataSubmissao' => $Evento_all['DataSubmissao'],
+                'qualidade_id' => $Evento_all['qualidade_id'],
+                'projeto_id' => $Evento_all['projeto_id'],
+                'tanque_id' => $Evento_all['tanque_id'],
+                'realizada' => 0,
+                'tecnico_id' => $Evento_all['tecnico_id'],
+            ]);
+
+            $evento =  Evento_Agenda::create([
+                'data' => $Evento_all['data'],
+                'hora' => $Evento_all['hora'],
+                'tecnico_id' => $Evento_all['tecnico_id'],
+                'fomulario_id' => $Evento_all['fomulario_id'],
+                'tanque_id' => $Evento_all['tanque_id'],
+                'submissao_id' => $submissao->id,
+            ]);
+            DB::commit();
+            return $evento;
+        } catch (Exception $e) {
+            DB::rollback();
+            if (config('app.debug')) {
+                return response()->json(ApiError::errorMassage($e, 4000));
+            }
+            return response()->json(ApiError::errorMassage('Error ao inserir o Evento', 4000));
+        }
     }
 }

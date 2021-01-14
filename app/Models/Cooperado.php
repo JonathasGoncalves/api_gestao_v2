@@ -81,6 +81,7 @@ class Cooperado extends Model
                 'todos.MUNICIPIO',
                 'tanques.tanque',
                 'tanques.latao',
+                'qualidade-leite.id as id_qualidade',
                 'qualidade-leite.cbt',
                 'qualidade-leite.ccs'
             )
