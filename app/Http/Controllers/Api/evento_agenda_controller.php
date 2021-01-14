@@ -15,10 +15,12 @@ class evento_agenda_controller extends Controller
 {
 
     private $evento_agenda;
+    private $formulario;
 
-    public function __construct(Evento_Agenda $evento_agenda)
+    public function __construct(Evento_Agenda $evento_agenda, Formulario $formulario)
     {
         $this->evento_agenda = $evento_agenda;
+        $this->formulario = $formulario;
     }
 
     //lista os eventos para apresentar na tela inicial da agenda
@@ -37,7 +39,7 @@ class evento_agenda_controller extends Controller
 
     //lista os tipos de Formulario disponiveis
     public function listar_formularios() {
-        $data = ['formularios' => Formulario::all()];
+        $data = ['formularios' => $this->formulario->listar_formularios()];
         return response()->json($data);
     }
 
