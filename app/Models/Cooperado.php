@@ -63,6 +63,12 @@ class Cooperado extends Model
             ->select(DB::raw('MAX(zle_dtfim) as zle_dtfim'))
             ->get();
 
+        $qualidade_filter = DB::table('qualidade-leite')
+            ->select(DB::raw('MAX(id) as qualidade_id, cbt, ccs, tanque'))
+            ->where('zle_dtfim', '=', $data[0]->zle_dtfim)
+            ->groupBy('cbt', 'ccs', 'tanque')
+            ->distinct();
+
         $cooperados = DB::table('cooperados')
             ->select('cooperados.codigo_cacal', 'cooperados.nome', 'cooperados.MUNICIPIO');
         $todos = DB::table('associados')
@@ -70,9 +76,11 @@ class Cooperado extends Model
         ->union($cooperados);
         $cooperados_todos = DB::table('tanques')
         ->join('qualidade-leite', 'tanques.tanque', '=', 'qualidade-leite.tanque')
-        //->where($relatorio, '>=', $padrao)
         ->joinSub($todos, 'todos', function ($join) {
-            $join->on('tanques.codigo', '=', 'todos.codigo_cacal');
+            $join->on('tanques.codigo', '=', 'todos.tanque');
+        })
+        ->joinSub($qualidade_filter, 'qualidade_filter', function ($join) {
+            $join->on('tanques.codigo', '=', 'qualidade_filter.tanque');
         })
          ->select(
                 'tanques.id',
@@ -81,7 +89,6 @@ class Cooperado extends Model
                 'todos.MUNICIPIO',
                 'tanques.tanque',
                 'tanques.latao',
-                'qualidade-leite.id as id_qualidade',
                 'qualidade-leite.cbt',
                 'qualidade-leite.ccs'
             )
