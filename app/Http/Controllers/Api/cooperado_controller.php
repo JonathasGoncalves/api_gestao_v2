@@ -44,9 +44,8 @@ class cooperado_controller extends Controller
     public function listar_cooperados()
     {
         //ini_set('max_execution_time', 300);
-        //$data = ['cooperados' => RelatorioQualidade::collection($this->cooperado->listar_cooperados_todos())];
-        $data = ['cooperados' => $this->cooperado->listar_cooperados_todos()];
-
+        $data = ['cooperados' => RelatorioQualidade::collection($this->cooperado->listar_cooperados_todos())];
+        //$data = ['cooperados' => $this->cooperado->listar_cooperados_todos()];
         return response()->json($data);
     }
 

@@ -62,38 +62,30 @@ class Cooperado extends Model
         $data = DB::table('qualidade-leite')
             ->select(DB::raw('MAX(zle_dtfim) as zle_dtfim'))
             ->get();
-
-        $qualidade_filter = DB::table('qualidade-leite')
-            ->select(DB::raw('MAX(id) as qualidade_id, cbt, ccs, tanque'))
-            ->where('zle_dtfim', '=', $data[0]->zle_dtfim)
-            ->groupBy('cbt', 'ccs', 'tanque')
-            ->distinct();
-
         $cooperados = DB::table('cooperados')
             ->select('cooperados.codigo_cacal', 'cooperados.nome', 'cooperados.MUNICIPIO');
         $todos = DB::table('associados')
         ->select('associados.CODIGO_CACAL', 'associados.NOME', 'associados.MUNICIPIO')
         ->union($cooperados);
         $cooperados_todos = DB::table('tanques')
-        ->join('qualidade-leite', 'tanques.tanque', '=', 'qualidade-leite.tanque')
+        ->join('qualidade-leite as qualidade', 'tanques.tanque', '=', 'qualidade.tanque')
         ->joinSub($todos, 'todos', function ($join) {
-            $join->on('tanques.codigo', '=', 'todos.tanque');
+            $join->on('tanques.codigo', '=', 'todos.CODIGO_CACAL');
         })
-        ->joinSub($qualidade_filter, 'qualidade_filter', function ($join) {
-            $join->on('tanques.codigo', '=', 'qualidade_filter.tanque');
-        })
-         ->select(
-                'tanques.id',
-                'todos.nome',
-                'todos.CODIGO_CACAL',
-                'todos.MUNICIPIO',
-                'tanques.tanque',
-                'tanques.latao',
-                'qualidade-leite.cbt',
-                'qualidade-leite.ccs'
-            )
+         ->select(DB::raw(
+                'MAX(qualidade.id) as qualidade_id,
+                tanques.id,
+                todos.nome,
+                todos.CODIGO_CACAL,
+                todos.MUNICIPIO,
+                tanques.tanque,
+                tanques.latao,
+                qualidade.cbt,
+                qualidade.ccs'
+            ))
         ->distinct()
-        ->where('qualidade-leite.zle_dtfim', '=', $data[0]->zle_dtfim)
+        ->where('qualidade.zle_dtfim', '=', $data[0]->zle_dtfim)
+        ->groupBy('tanques.id', 'todos.nome', 'todos.CODIGO_CACAL', 'todos.MUNICIPIO', 'tanques.tanque', 'tanques.latao', 'qualidade.cbt', 'qualidade.ccs')
         ->orderBy('todos.nome')
         ->get();
         
