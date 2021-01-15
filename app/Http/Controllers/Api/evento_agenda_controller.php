@@ -9,6 +9,7 @@ use App\Http\Resources\EventoAgendaExibir;
 use App\Models\Evento_Agenda;
 use App\Models\Formulario;
 use App\Models\Submissao;
+use Illuminate\Support\Facades\DB;
 
 
 class evento_agenda_controller extends Controller
