@@ -52,6 +52,8 @@ class evento_agenda_controller extends Controller
 
     //Cria um novo evento para a agenda
     public function agendar_evento(Request $request) {
+        $Evento_all = $request->all();
+        return $Evento_all;
         try {
             DB::beginTransaction();
             $Evento_all = $request->all();
