@@ -52,15 +52,18 @@ class evento_agenda_controller extends Controller
 
     //Cria um novo evento para a agenda
     public function agendar_evento(Request $request) {
+        
         $Evento_all = $request->all();
-        return $Evento_all;
         try {
+            if ($Evento_all['projeto_id'] == "") {
+                $Evento_all['projeto_id'] = null;
+            }
             DB::beginTransaction();
             $Evento_all = $request->all();
             //criando submissao pertencete a este evento
             $submissao =  Submissao::create([
                 'DataSubmissao' => $Evento_all['DataSubmissao'],
-                'qualidade_id' => $Evento_all['qualidade_id'],
+                //'qualidade_id' => $Evento_all['qualidade_id'],
                 'projeto_id' => $Evento_all['projeto_id'],
                 'tanque_id' => $Evento_all['tanque_id'],
                 'realizada' => 0,
