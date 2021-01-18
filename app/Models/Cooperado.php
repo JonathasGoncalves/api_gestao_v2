@@ -58,34 +58,25 @@ class Cooperado extends Model
     public function listar_cooperados_todos()
     {
 
-        //BUSCAR A DATA MAIS RECENTE DE QUALIDADE
-        $data = DB::table('qualidade-leite')
-            ->select(DB::raw('MAX(zle_dtfim) as zle_dtfim'))
-            ->get();
         $cooperados = DB::table('cooperados')
             ->select('cooperados.codigo_cacal', 'cooperados.nome', 'cooperados.MUNICIPIO');
         $todos = DB::table('associados')
         ->select('associados.CODIGO_CACAL', 'associados.NOME', 'associados.MUNICIPIO')
         ->union($cooperados);
         $cooperados_todos = DB::table('tanques')
-        ->join('qualidade-leite as qualidade', 'tanques.tanque', '=', 'qualidade.tanque')
-        ->joinSub($todos, 'todos', function ($join) {
-            $join->on('tanques.codigo', '=', 'todos.CODIGO_CACAL');
-        })
+            ->joinSub($todos, 'todos', function ($join_todos) {
+                $join_todos->
+                    On('todos.codigo_cacal', '=', 'tanques.codigo_cacal'); 
+                })
          ->select(DB::raw(
-                'MAX(qualidade.id) as qualidade_id,
-                tanques.id,
+               'tanques.id,
                 todos.nome,
                 todos.CODIGO_CACAL,
                 todos.MUNICIPIO,
                 tanques.tanque,
-                tanques.latao,
-                qualidade.cbt,
-                qualidade.ccs'
+                tanques.latao'
             ))
         ->distinct()
-        ->where('qualidade.zle_dtfim', '=', $data[0]->zle_dtfim)
-        ->groupBy('tanques.id', 'todos.nome', 'todos.CODIGO_CACAL', 'todos.MUNICIPIO', 'tanques.tanque', 'tanques.latao', 'qualidade.cbt', 'qualidade.ccs')
         ->orderBy('todos.nome')
         ->get();
         
