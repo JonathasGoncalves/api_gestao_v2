@@ -14,7 +14,7 @@ class Formulario extends Model
     public function listar_formularios() {
 
         $formularios = DB::table('formulario')
-        ->select('formulario.Titulo')
+        ->select('formulario.id', 'formulario.Titulo')
         ->get();
 
         return $formularios;
