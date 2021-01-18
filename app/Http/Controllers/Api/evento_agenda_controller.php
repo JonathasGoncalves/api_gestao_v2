@@ -86,4 +86,9 @@ class evento_agenda_controller extends Controller
             return response()->json(ApiError::errorMassage('Error ao inserir o Evento', 4000));
         }
     }
+
+    public function eventos_por_data(Request $request) {
+        $data = ['eventos' => $this->evento_agenda->where('data', '>=', $request->input('data'))->orderBy('hora')->get()->groupBy('data')];
+        return response()->json($data);
+    }
 }
