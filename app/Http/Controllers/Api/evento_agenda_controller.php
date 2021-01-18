@@ -55,9 +55,6 @@ class evento_agenda_controller extends Controller
         
         $Evento_all = $request->all();
         try {
-            if ($Evento_all['projeto_id'] == "") {
-                $Evento_all['projeto_id'] = null;
-            }
             DB::beginTransaction();
             $Evento_all = $request->all();
             //criando submissao pertencete a este evento
@@ -68,10 +65,11 @@ class evento_agenda_controller extends Controller
                 'tanque_id' => $Evento_all['tanque_id'],
                 'realizada' => 0,
                 'tecnico_id' => $Evento_all['tecnico_id'],
+                'aproveitamento' => 0,
             ]);
 
             $evento =  Evento_Agenda::create([
-                'data' => $Evento_all['data'],
+                'data' => $Evento_all['DataSubmissao'],
                 'hora' => $Evento_all['hora'],
                 'tecnico_id' => $Evento_all['tecnico_id'],
                 'fomulario_id' => $Evento_all['fomulario_id'],

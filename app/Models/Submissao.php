@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Submissao extends Model
 {
+
     use HasFactory;
     protected $table = 'submissao';
+    protected $fillable = [
+        'DataSubmissao', 'qualidade_id', 'projeto_id', 'tanque_id', 'realizada', 'tecnico_id', 'aproveitamento'
+    ];
 
     /**
      * Submissão tem muitas OpcaoPergunta (Aqui é feita a ligação nxn de Submissão com OpcaoPergunta)
