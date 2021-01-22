@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\EventoAgenda; 
 use App\Http\Resources\EventoAgendaExibir;
+use App\Http\Resources\EventoAgendaPorDia;
 use App\Models\Evento_Agenda;
 use App\Models\Formulario;
 use App\Models\Submissao;
@@ -88,7 +89,7 @@ class evento_agenda_controller extends Controller
     }
 
     public function eventos_por_data(Request $request) {
-        $data = ['eventos' => $this->evento_agenda->where('data', '>=', $request->input('data'))->orderBy('hora')->get()->groupBy('data')];
+        $data = ['eventos' => EventoAgendaPorDia::collection($this->evento_agenda->where('data', '>=', $request->input('data'))->orderBy('hora')->get())->groupBy('data')];
         return response()->json($data);
     }
 }
