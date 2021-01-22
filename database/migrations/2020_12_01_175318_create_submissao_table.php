@@ -18,7 +18,7 @@ class CreateSubmissaoTable extends Migration
             $table->charset = 'utf8mb4';
 
             $table->increments('id');
-            $table->dateTime('data_submissao');
+            $table->dateTime('DataSubmissao');
             $table->integer('qualidade_id')->nullable();
             $table->unsignedInteger('projeto_id')->nullable();
             $table->integer('tanque_id');
