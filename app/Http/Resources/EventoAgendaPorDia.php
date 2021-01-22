@@ -19,7 +19,7 @@ class EventoAgendaPorDia extends JsonResource
             'formulario'        => new FormularioResourceExibir($this->formulario), 
             'hora'              => $this->hora, 
             'id'                => $this->id, 
-            'submissao'         => new SubmissaoAgenda($this->submissao_id),
+            'submissao'         => new SubmissaoAgenda($this->Submissao),
             'tanque'            => new TanqueResourceExibir($this->Tanque),
             'tecnico'           => new TecnicoResourceExibir($this->tecnico),
         ];
