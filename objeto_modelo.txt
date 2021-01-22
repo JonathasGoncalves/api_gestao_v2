@@ -9,6 +9,7 @@ TEMA
 
 
 ideia: buscar todos os temas, todas as perguntas, todas as opcaoPergunta e fazer um for montando o objeto abaixo
+ideia: fazer na api
 
 [
    Tema: {
