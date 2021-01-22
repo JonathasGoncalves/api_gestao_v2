@@ -44,6 +44,8 @@ Route::namespace('Api')->name('api.')->group(function () {
         //Route::post('/submeter_evento', 'evento_agenda_controller@submeter_evento')->name('submeter_evento');
         //AGENDAR EVENTO
         Route::post('/eventos_por_data', 'evento_agenda_controller@eventos_por_data')->name('eventos_por_data');
+        //POPULAR FORMULARIO
+        Route::post('/pupular_furmulario', 'evento_agenda_controller@pupular_furmulario')->name('pupular_furmulario');
     });
     Route::prefix('cooperado')->group(function () {
         //RETORNA A QUALIDADE DOS COOPERADOS BASEADO NOS PARAMETROS 

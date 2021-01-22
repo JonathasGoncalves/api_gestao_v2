@@ -9,6 +9,8 @@ use App\Http\Resources\EventoAgendaExibir;
 use App\Http\Resources\EventoAgendaPorDia;
 use App\Models\Evento_Agenda;
 use App\Models\Formulario;
+use App\Models\Tema;
+use App\Models\Pergunta;
 use App\Models\Submissao;
 use Illuminate\Support\Facades\DB;
 
@@ -91,5 +93,16 @@ class evento_agenda_controller extends Controller
     public function eventos_por_data(Request $request) {
         $data = ['eventos' => EventoAgendaPorDia::collection($this->evento_agenda->where('data', '>=', $request->input('data'))->orderBy('hora')->get())->groupBy('data')];
         return response()->json($data);
+    }
+
+    public function pupular_furmulario(Request $request) {
+        $formulario = $request->formulario_id;
+        $temas = Tema::all();
+
+        $perguntas = Pergunta::cursor($formulario)->filter(function ($pergunta, $formulario) {
+            return $pergunta->formulario_id == $formulario;
+        });
+
+        return $perguntas;
     }
 }

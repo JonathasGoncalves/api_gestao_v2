@@ -1,0 +1,30 @@
+Formulario:
+-Cabeçalho
+TEMA
+--OpcaoPerguntas(todos de cada perguntas)
+---Perguntas
+----Enunciado
+-----Opcoes
+------Positiva
+
+
+ideia: buscar todos os temas, todas as perguntas, todas as opcaoPergunta e fazer um for montando o objeto abaixo
+
+[
+   Tema: {
+      Nome_tema,
+      id_tema,
+      Perguntas: [
+         pergunta: {
+            Enunciado,
+ 	    Opções: [
+               opcao_nome,
+	       opcaoPergunta,
+	       positiva,
+	       resposta
+            ]
+         }, ...
+      ]
+   }, ...
+]
+		 
