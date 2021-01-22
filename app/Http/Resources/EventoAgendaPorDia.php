@@ -16,12 +16,12 @@ class EventoAgendaPorDia extends JsonResource
     {
         return [
             'data'              => $this->data, 
-            'fomulario_id'      => new FormularioResourceExibir($this->formulario), 
+            'fomulario'      => new FormularioResourceExibir($this->formulario), 
             'hora'              => $this->hora, 
             'id'                => $this->id, 
             'submissao_id'      => $this->submissao_id, 
-            'tanque_id'         => new TanqueResourceExibir($this->Tanque),
-            'tecnico_id'        => new TecnicoResourceExibir($this->tecnico),
+            'tanque'         => new TanqueResourceExibir($this->Tanque),
+            'tecnico'        => new TecnicoResourceExibir($this->tecnico),
         ];
     }
 }

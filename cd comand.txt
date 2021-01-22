@@ -1,1 +1,1 @@
-apigestaocooperados.selita.coop.brgitprojectapi_gestao_v2
+apigestaocooperados.selita.coop.br/gitproject/api_gestao_v2
