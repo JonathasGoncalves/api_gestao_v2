@@ -48,8 +48,21 @@ Route::namespace('Api')->name('api.')->group(function () {
         //AGENDAR EVENTO
         Route::post('/eventos_por_data', 'evento_agenda_controller@eventos_por_data')->name('eventos_por_data');
         //POPULAR FORMULARIO
-        Route::post('/pupular_furmulario', 'evento_agenda_controller@pupular_furmulario')->name('pupular_furmulario');
+        Route::post('/popular_formulario', 'evento_agenda_controller@popular_furmulario')->name('popular_formulario');
+        //LISTAR FORMULARIOS
+        Route::get('/formularios_all', 'evento_agenda_controller@formularios_all')->name('formularios_all');
+        //LISTAR TEMAS
+        Route::get('/temas_all', 'evento_agenda_controller@temas_all')->name('temas_all');
+        //LISTAR PROJETOS
+        Route::get('/projetos_all', 'evento_agenda_controller@projetos_all')->name('projetos_all');
+        //LISTAR PERGUNTAS
+        Route::get('/perguntas_all', 'evento_agenda_controller@perguntas_all')->name('perguntas_all');
+        //LISTAR OPCOES
+        Route::get('/opcoes_all', 'evento_agenda_controller@opcoes_all')->name('opcoes_all');
+        //LISTAR OPCOES_PERGUNTAS
+        Route::get('/opcoes_perguntas_all', 'evento_agenda_controller@opcoes_perguntas_all')->name('opcoes_perguntas_all'); 
     });
+
     Route::prefix('cooperado')->group(function () {
         //RETORNA A QUALIDADE DOS COOPERADOS BASEADO NOS PARAMETROS 
         //EXEMPLO: data_referencia: 201701, relatorio: cbt, filtro: >, padrao: 300
@@ -59,6 +72,7 @@ Route::namespace('Api')->name('api.')->group(function () {
         //RETORNA TODOS OS COOPERADOS
         Route::get('/listar_cooperados', 'cooperado_controller@listar_cooperados')->name('listar_cooperados');
     });
+
     Route::prefix('projeto')->group(function () {
         //LISTA OS PROJETOS EM ABERTO
         Route::get('/listar_projeto_abertos', 'projeto_controller@listar_projeto_abertos')->name('listar_projeto_abertos');

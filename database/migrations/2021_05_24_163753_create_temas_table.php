@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePerguntaTable extends Migration
+class CreateTemasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class CreatePerguntaTable extends Migration
      */
     public function up()
     {
-        Schema::create('perguntas', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->charset = 'utf8mb4';
+        Schema::create('temas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('enunciado');
+            $table->string('nome');
             $table->unsignedInteger('formulario_id');
             $table->timestamps();
 
             $table->foreign('formulario_id')->references('id')->on('formulario');
-            $table->foreign('tema_id')->references('id')->on('tema');
         });
     }
 
@@ -33,6 +30,6 @@ class CreatePerguntaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pergunta');
+        Schema::dropIfExists('temas');
     }
 }

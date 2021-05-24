@@ -9,14 +9,14 @@ class Pergunta extends Model
 {
     use HasFactory;
 
-    protected $table = 'pergunta';
+    protected $table = 'perguntas';
 
     /**
      * Uma Pergunta tem várias opções;
      */
     public function Opcao()
     {
-        return $this->belongsToMany(Opcao::class, 'opcao_pergunta');
+        return $this->belongsToMany(Opcao::class, 'opcao_perguntas');
     }
 
     /**

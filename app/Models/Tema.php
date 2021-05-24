@@ -9,5 +9,5 @@ class Tema extends Model
 {
     use HasFactory;
 
-    protected $table = 'tema';
+    protected $table = 'temas';
 }

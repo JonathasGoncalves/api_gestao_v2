@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PerguntaResource extends JsonResource
+class ProjetoResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,10 +15,9 @@ class PerguntaResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'                =>  $this->id,
-            'enunciado'         =>  $this->enunciado,
-            'opcoes'            =>  OpcaoResource::collection($this->opcao),
-            'tema'              =>  new TemaResource($this->tema),
+            'id'            => $this->id,
+            'nome'          => $this->nome,
+            'aberto'        => $this->aberto,
         ];
     }
 }

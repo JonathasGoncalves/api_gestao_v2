@@ -50,6 +50,6 @@ class TecnicoController extends Controller
     public function tecnicos_all() {
         $tecnicos = TecnicoResourceListar::collection(Tecnico::all());
         if (!$tecnicos) return response()->json(ApiError::errorMassage('Nenhum técnico cadastrado', 404));
-        return response()->json(['Tecnicos' => $tecnicos]);
+        return response()->json(['tecnicos' => $tecnicos]);
     }
 }

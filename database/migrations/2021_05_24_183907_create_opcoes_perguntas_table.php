@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOpcaoPerguntaTable extends Migration
+class CreateOpcoesPerguntasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateOpcaoPerguntaTable extends Migration
      */
     public function up()
     {
-        Schema::create('opcao_pergunta', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+        Schema::create('opcoes_perguntas', function (Blueprint $table) {
+             $table->engine = 'InnoDB';
             $table->charset = 'utf8mb4';
 
             $table->increments('id');
@@ -35,6 +35,6 @@ class CreateOpcaoPerguntaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('opcao_pergunta');
+        Schema::dropIfExists('opcoes_perguntas');
     }
 }

@@ -15,7 +15,9 @@ class TemaResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'nome'      => $this->nome,
+            'id'            => $this->id,
+            'formulario_id' => $this->formulario_id,
+            'nome'          => $this->nome,
         ];
     }
 }

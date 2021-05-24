@@ -7,11 +7,17 @@ use Illuminate\Http\Request;
 use App\Http\Resources\EventoAgenda; 
 use App\Http\Resources\EventoAgendaExibir;
 use App\Http\Resources\EventoAgendaPorDia;
+use App\Http\Resources\FormularioResourceExibir;
+use App\Http\Resources\TemaResource;
+use App\Http\Resources\ProjetoResource;
 use App\Models\Evento_Agenda;
 use App\Models\Formulario;
 use App\Models\Tema;
 use App\Models\Pergunta;
 use App\Models\Submissao;
+use App\Models\Projeto; 
+use App\Models\Opcao;
+use App\Models\OpcaoPergunta;
 use Illuminate\Support\Facades\DB;
 
 
@@ -105,4 +111,41 @@ class evento_agenda_controller extends Controller
 
         return $perguntas;
     }
+
+    public function formularios_all() {
+        $formularios = FormularioResourceExibir::collection(Formulario::all());
+        if (!$formularios) return response()->json(ApiError::errorMassage('Nenhum formulário cadastrado', 404));
+        return response()->json(['formularios' => $formularios]);
+    }
+
+    public function temas_all() {
+        $temas = TemaResource::collection(Tema::all());
+        if (!$temas) return response()->json(ApiError::errorMassage('Nenhum tema cadastrado', 404));
+        return response()->json(['formularios' => $temas]);
+    }
+    
+    public function projetos_all() {
+        $temas = ProjetoResource::collection(Projeto::all());
+        if (!$temas) return response()->json(ApiError::errorMassage('Nenhum projeto cadastrado', 404));
+        return response()->json(['projetos' => $temas]);
+    }
+
+    public function perguntas_all() {
+        $perguntas = Pergunta::all();
+        if (!$perguntas) return response()->json(ApiError::errorMassage('Nenhuma pergunta cadastrada', 404));
+        return response()->json(['perguntas' => $perguntas]);
+    }
+    
+    public function opcoes_all() {
+        $opcoes = Opcao::all();
+        if (!$opcoes) return response()->json(ApiError::errorMassage('Nenhuma opcao cadastrada', 404));
+        return response()->json(['opcoes' => $opcoes]);
+    }
+
+    public function opcoes_perguntas_all() {
+        $opcoes_perguntas = OpcaoPergunta::all();
+        if (!$opcoes_perguntas) return response()->json(ApiError::errorMassage('Nenhuma opcao_pergunta cadastrada', 404));
+        return response()->json(['opcoes_perguntas' => $opcoes_perguntas]);
+    }
+    
 }
