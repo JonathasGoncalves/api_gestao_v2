@@ -121,7 +121,7 @@ class evento_agenda_controller extends Controller
     public function temas_all() {
         $temas = TemaResource::collection(Tema::all());
         if (!$temas) return response()->json(ApiError::errorMassage('Nenhum tema cadastrado', 404));
-        return response()->json(['formularios' => $temas]);
+        return response()->json(['temas' => $temas]);
     }
     
     public function projetos_all() {
