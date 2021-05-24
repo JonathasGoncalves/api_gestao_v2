@@ -12,6 +12,7 @@ use Laravel\Passport\Token;
 use Lcobucci\JWT\Parser;
 use Exception;
 use Auth;
+use App\Http\Resources\TecnicoResourceListar;
 
 
 
@@ -43,5 +44,12 @@ class TecnicoController extends Controller
     public function userLogged()
     {
         return Auth::user();
+    }
+
+    //RETORNA TODOS OS TECNICOS
+    public function tecnicos_all() {
+        $tecnicos = TecnicoResourceListar::collection(Tecnico::all());
+        if (!$tecnicos) return response()->json(ApiError::errorMassage('Nenhum técnico cadastrado', 404));
+        return response()->json(['Tecnicos' => $tecnicos]);
     }
 }

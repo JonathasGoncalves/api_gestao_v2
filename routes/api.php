@@ -28,6 +28,9 @@ Route::namespace('Api')->name('api.')->group(function () {
     Route::prefix('tecnico')->group(function () {
         //CADASTRAR TÉCNICO
         Route::post('/novo_tecnico', 'TecnicoController@store')->name('novo_tecnico');
+        //LISTAR TÉCNICOS
+        Route::get('/tecnicos_all', 'TecnicoController@tecnicos_all')->name('tecnicos_all');
+        
     });
     Route::prefix('evento')->group(function () {
         //RETORNA TODOS OS EVENTOS APÓS A DATA INFORMADA

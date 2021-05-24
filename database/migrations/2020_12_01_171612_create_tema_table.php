@@ -16,7 +16,10 @@ class CreateTemaTable extends Migration
         Schema::create('tema', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
+            $table->unsignedInteger('formulario_id');
             $table->timestamps();
+
+            $table->foreign('formulario_id')->references('id')->on('formulario');
         });
     }
 

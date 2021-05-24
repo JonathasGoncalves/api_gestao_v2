@@ -13,13 +13,12 @@ class CreatePerguntaTable extends Migration
      */
     public function up()
     {
-        Schema::create('pergunta', function (Blueprint $table) {
+        Schema::create('perguntas', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->charset = 'utf8mb4';
             $table->increments('id');
             $table->string('enunciado');
             $table->unsignedInteger('formulario_id');
-            $table->unsignedInteger('tema_id');
             $table->timestamps();
 
             $table->foreign('formulario_id')->references('id')->on('formulario');
