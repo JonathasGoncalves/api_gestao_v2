@@ -18,19 +18,14 @@ use Illuminate\Support\Facades\Route;
 //ROTAS AUTENTICADAS
 Route::middleware(['auth:api'])->namespace('Api')->name('api.')->group(function () {
     Route::prefix('tecnico')->group(function () {
+        //CADASTRAR TÉCNICO
+        Route::post('/novo_tecnico', 'TecnicoController@store')->name('novo_tecnico');
         //RECUPERAR TÉCNICO LOGADO
         Route::get('/logged_tecnico', 'TecnicoController@userLogged')->name('logged_tecnico');
     });
-});
-
-//ROTAS QUE NÃO NECESSITAM DE AUTENTICAÇÃO
-Route::namespace('Api')->name('api.')->group(function () {
     Route::prefix('tecnico')->group(function () {
-        //CADASTRAR TÉCNICO
-        Route::post('/novo_tecnico', 'TecnicoController@store')->name('novo_tecnico');
         //LISTAR TÉCNICOS
-        Route::get('/tecnicos_all', 'TecnicoController@tecnicos_all')->name('tecnicos_all');
-        
+        Route::get('/tecnicos_all', 'TecnicoController@tecnicos_all')->name('tecnicos_all');  
     });
     Route::prefix('evento')->group(function () {
         //RETORNA TODOS OS EVENTOS APÓS A DATA INFORMADA
@@ -62,7 +57,6 @@ Route::namespace('Api')->name('api.')->group(function () {
         //LISTAR OPCOES_PERGUNTAS
         Route::get('/opcoes_perguntas_all', 'evento_agenda_controller@opcoes_perguntas_all')->name('opcoes_perguntas_all'); 
     });
-
     Route::prefix('cooperado')->group(function () {
         //RETORNA A QUALIDADE DOS COOPERADOS BASEADO NOS PARAMETROS 
         //EXEMPLO: data_referencia: 201701, relatorio: cbt, filtro: >, padrao: 300
@@ -72,9 +66,9 @@ Route::namespace('Api')->name('api.')->group(function () {
         //RETORNA TODOS OS COOPERADOS
         Route::get('/listar_cooperados', 'cooperado_controller@listar_cooperados')->name('listar_cooperados');
     });
-
     Route::prefix('projeto')->group(function () {
         //LISTA OS PROJETOS EM ABERTO
         Route::get('/listar_projeto_abertos', 'projeto_controller@listar_projeto_abertos')->name('listar_projeto_abertos');
     });
 });
+
