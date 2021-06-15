@@ -28,9 +28,13 @@ Route::namespace('Api')->name('api.')->group(function () {
         //LISTAR TÉCNICOS
         Route::get('/tecnicos_all', 'TecnicoController@tecnicos_all')->name('tecnicos_all');  
     });
-    Route::prefix('qualidades')->group(function () {
+    Route::prefix('qualidade')->group(function () {
         //LISTAR ULTIMAS
         Route::get('/ultimas_qualidades', 'QualidadeController@ultimas_qualidades')->name('ultimas_qualidades');  
+    });
+    Route::prefix('tanque')->group(function () {
+        //LISTAR TANQUES
+        Route::get('/tanques_all', 'tanque_controller@tanques_all')->name('tanques_all');  
     });
     Route::prefix('evento')->group(function () {
         //RETORNA TODOS OS EVENTOS APÓS A DATA INFORMADA
