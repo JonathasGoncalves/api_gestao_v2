@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 
 //ROTAS AUTENTICADAS
-Route::middleware(['auth:api'])->namespace('Api')->name('api.')->group(function () {
+//middleware(['auth:api'])->
+Route::namespace('Api')->name('api.')->group(function () {
     Route::prefix('tecnico')->group(function () {
         //CADASTRAR TÉCNICO
         Route::post('/novo_tecnico', 'TecnicoController@store')->name('novo_tecnico');
@@ -26,6 +27,10 @@ Route::middleware(['auth:api'])->namespace('Api')->name('api.')->group(function 
     Route::prefix('tecnico')->group(function () {
         //LISTAR TÉCNICOS
         Route::get('/tecnicos_all', 'TecnicoController@tecnicos_all')->name('tecnicos_all');  
+    });
+    Route::prefix('qualidades')->group(function () {
+        //LISTAR ULTIMAS
+        Route::get('/ultimas_qualidades', 'QualidadeController@ultimas_qualidades')->name('ultimas_qualidades');  
     });
     Route::prefix('evento')->group(function () {
         //RETORNA TODOS OS EVENTOS APÓS A DATA INFORMADA

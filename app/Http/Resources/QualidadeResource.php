@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-
 class QualidadeResource extends JsonResource
 {
     /**
@@ -15,8 +14,12 @@ class QualidadeResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'ccs'      => rtrim($this->ccs), 
-            'cbt'      => rtrim($this->cbt),
+            'tanque'        => rtrim($this->tanque), 
+            'cbt'           => rtrim($this->cbt),
+            'ccs'           => rtrim($this->ccs), 
+            'gordura'       => rtrim($this->gordura),
+            'volume'        => rtrim($this->volume), 
+            'faixa'         => rtrim($this->faixa),
         ];
     }
 }
