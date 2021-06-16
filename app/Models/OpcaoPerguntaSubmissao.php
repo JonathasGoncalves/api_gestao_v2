@@ -4,26 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
-class ImagemObs extends Model
+
+class OpcaoPerguntaSubmissao extends Model
 {
     use HasFactory;
-    protected $table = 'imagem_obs';
-    protected $fillable = [
-        'uri', 'resposta_observacao_id'
-    ];
+    protected $table = 'opcao_pergunta_submissao';
 
-    public function imagem_obs_data($data_base)
+    public function ops_por_data($data_base)
     {
         $ops = DB::table('opcao_pergunta_submissao')
             ->select(
-                'imagem_obs.id',
-                'imagem_obs.resposta_observacao_id',
-                'imagem_obs.uri',
+                'opcao_pergunta_submissao.id',
+                'opcao_pergunta_submissao.submissao_id',
+                'opcao_pergunta_submissao.opcao_pergunta_id',
             )
             ->join('submissao', 'opcao_pergunta_submissao.submissao_id', '=', 'submissao.id')
-            ->join('imagem_obs', 'opcao_pergunta_submissao.id', '=', 'imagem_obs.resposta_observacao_id')
             ->where('submissao.DataSubmissao', '>=', $data_base)
             ->get();
         return $ops;

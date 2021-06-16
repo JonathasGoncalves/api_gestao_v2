@@ -120,5 +120,21 @@ class Evento_Agenda extends Model
         return $eventos;
     }
 
-    
+    public function evento_agenda_data($data_base)
+    {
+        $evento_agenda = DB::table('evento_agenda')
+            ->select(
+                'evento_agenda.id',
+                'evento_agenda.data',
+                'evento_agenda.hora',
+                'evento_agenda.tecnico_id',
+                'evento_agenda.fomulario_id',
+                'evento_agenda.tanque_id',
+                'evento_agenda.submissao_id'
+            )
+            ->join('submissao', 'evento_agenda.submissao_id', '=', 'submissao.id')
+            ->where('submissao.DataSubmissao', '>=', $data_base)
+            ->get();
+        return $evento_agenda;
+    }
 }

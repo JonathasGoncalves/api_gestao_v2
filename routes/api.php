@@ -65,7 +65,24 @@ Route::namespace('Api')->name('api.')->group(function () {
         Route::get('/opcoes_all', 'evento_agenda_controller@opcoes_all')->name('opcoes_all');
         //LISTAR OPCOES_PERGUNTAS
         Route::get('/opcoes_perguntas_all', 'evento_agenda_controller@opcoes_perguntas_all')->name('opcoes_perguntas_all'); 
+        //LISTA TODAS AS SUBMISSOES SEM POPULAR, DESDE CERTA DATA
+        Route::post('/submissoes_por_data', 'evento_agenda_controller@submissoes_por_data')->name('submissoes_por_data');
+        //LISTA TODAS AS RESPOSTAS DE SUBMISSAO SEM POPULAR, DESDE CERTA DATA
+        Route::post('/ops_por_data', 'evento_agenda_controller@ops_por_data')->name('ops_por_data');     
+        //LISTA TODAS AS RESPOSTAS DE SUBMISSAO SEM POPULAR, DESDE CERTA DATA
+        Route::post('/resposta_observacao_por_data', 'evento_agenda_controller@resposta_observacao_por_data')->name('resposta_observacao_por_data');
+        //LISTA TODAS AS IMAGENS DAS SUBMISSÕES DEPOIS DE CERTA DATA
+        Route::post('/imagem_obs_data', 'evento_agenda_controller@imagem_obs_data')->name('imagem_obs_data');
+        //LISTA TODAS OS EVENTOS DAS SUBMISSÕES DEPOIS DE CERTA DATA
+        Route::post('/eventos_data', 'evento_agenda_controller@eventos_data')->name('eventos_data');  
+        //LISTA TODAS AS RESPOSTAS ESCRITAS DAS SUBMISSÕES DEPOIS DE CERTA DATA
+        Route::post('/resposta_escrita_por_data', 'evento_agenda_controller@resposta_escrita_por_data')->name('resposta_escrita_por_data'); 
+        //LISTA TODAS AS RESPOSTAS_PERGUNTAS ESCRITAS DAS SUBMISSÕES DEPOIS DE CERTA DATA
+        Route::post('/resposta_pergunta_por_data', 'evento_agenda_controller@resposta_pergunta_por_data')->name('resposta_pergunta_por_data');
+        //LISTA TODAS AS RESPOSTAS_PERGUNTAS SUBMISSAO DAS SUBMISSÕES DEPOIS DE CERTA DATA
+        Route::post('/rps_por_data', 'evento_agenda_controller@rps_por_data')->name('rps_por_data');                   
     });
+
     Route::prefix('cooperado')->group(function () {
         //RETORNA A QUALIDADE DOS COOPERADOS BASEADO NOS PARAMETROS 
         //EXEMPLO: data_referencia: 201701, relatorio: cbt, filtro: >, padrao: 300

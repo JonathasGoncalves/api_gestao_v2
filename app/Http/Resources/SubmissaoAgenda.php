@@ -15,8 +15,13 @@ class SubmissaoAgenda extends JsonResource
     public function toArray($request)
     {
         return [
-            'data_submissao'    => $this->data_submissao,
+            'id'                => $this->id,
+            'DataSubmissao'     => $this->DataSubmissao,
+            'qualidade_id'      => $this->qualidade_id,
+            'projeto_id'        => $this->projeto_id,
+            'tanque_id'         => $this->tanque_id,
             'realizada'         => $this->realizada,
+            'tecnico_id'        => $this->tecnico_id,
             'aproveitamento'    => $this->aproveitamento,
         ];
     }
