@@ -31,7 +31,6 @@ Route::namespace('Api')->name('api.')->group(function () {
     Route::prefix('qualidade')->group(function () {
         //LISTAR ULTIMAS
         Route::get('/ultimas_qualidades', 'QualidadeController@ultimas_qualidades')->name('ultimas_qualidades');
-        Route::get('/ultimas_qualidades_teste', 'QualidadeController@ultimas_qualidades')->name('ultimas_qualidades');    
     });
     Route::prefix('tanque')->group(function () {
         //LISTAR TANQUES
