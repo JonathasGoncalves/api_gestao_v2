@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cooperado;
-use App\Http\Resources\RelatorioQualidade;  
+use App\Http\Resources\RelatorioQualidade;   
+use App\Http\Resources\CooperadoResource; 
 use App\Http\Resources\RelatorioQualidadeExport;
 use Excel;
 use App\Exports\QualidadeExport;
@@ -44,7 +45,7 @@ class cooperado_controller extends Controller
     public function listar_cooperados()
     {
         //ini_set('max_execution_time', 300);
-        $data = ['cooperados' => RelatorioQualidade::collection($this->cooperado->listar_cooperados_todos())];
+        $data = ['cooperados' => CooperadoResource::collection($this->cooperado->listar_cooperados_todos())];
         //$data = ['cooperados' => $this->cooperado->listar_cooperados_todos()];
         return response()->json($data);
     }
