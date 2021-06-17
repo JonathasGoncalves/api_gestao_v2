@@ -21,6 +21,8 @@ class RelatorioQualidade extends JsonResource
             'municipio'         => ucwords(strtolower(trim($this->MUNICIPIO))),
             'tanque'            => trim(str_pad($this->tanque, 6, '0', STR_PAD_LEFT)),
             'latao'             => trim(str_pad($this->latao, 6, '0', STR_PAD_LEFT)),
+            'cbt'               => trim($this->cbt),
+            'ccs'               => trim($this->ccs),
         ];
     }
 }
