@@ -35,7 +35,7 @@ class cooperado_controller extends Controller
     //GERAR EXCEL DAS QUALIDADES
     public function gerar_excel_qualidade(Request $request)
     {
-        $criado = Excel::store(new QualidadeExport($request->data_referencia, $request->relatorio, $request->filtro, $request->padrao), 'qualidades.xlsx');
+        $criado = Excel::store(new QualidadeExport($request->data_referencia, $request->relatorio, $request->filtro, $request->padrao), storage_path(), 'qualidades.xlsx');
         if (!$criado) return response()->json(ApiError::errorMassage(['data' => ['msg' => 'Não foi possivel gerar o arquivo!']], 4040), 404);
         return response()->json($criado);
     }
