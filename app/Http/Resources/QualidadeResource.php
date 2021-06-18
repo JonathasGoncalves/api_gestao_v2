@@ -14,6 +14,7 @@ class QualidadeResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id'            => rtrim($this->id), 
             'tanque'        => rtrim($this->tanque), 
             'cbt'           => rtrim($this->cbt),
             'ccs'           => rtrim($this->ccs), 

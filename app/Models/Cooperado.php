@@ -69,7 +69,7 @@ class Cooperado extends Model
                     On('todos.codigo_cacal', '=', 'tanques.codigo_cacal'); 
                 })
          ->select(DB::raw(
-               'tanques.id,
+                'tanques.id,
                 todos.nome,
                 todos.CODIGO_CACAL,
                 todos.MUNICIPIO,

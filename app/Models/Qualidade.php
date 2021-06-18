@@ -17,6 +17,7 @@ class Qualidade extends Model
 
         $qualidades = DB::table('qualidade-leite')
         ->select(
+            'qualidade-leite.id',
             'qualidade-leite.tanque',
             'qualidade-leite.cbt',
             'qualidade-leite.ccs',
