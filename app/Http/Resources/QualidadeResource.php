@@ -18,6 +18,7 @@ class QualidadeResource extends JsonResource
             'tanque'        => rtrim($this->tanque), 
             'cbt'           => rtrim($this->cbt),
             'ccs'           => rtrim($this->ccs), 
+            'est'           => rtrim($this->est),
             'gordura'       => rtrim($this->gordura),
             'volume'        => rtrim($this->volume), 
             'faixa'         => rtrim($this->faixa),

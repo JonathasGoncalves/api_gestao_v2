@@ -21,6 +21,7 @@ class Qualidade extends Model
             'qualidade-leite.tanque',
             'qualidade-leite.cbt',
             'qualidade-leite.ccs',
+            'qualidade-leite.est',
             'qualidade-leite.gordura',
             'qualidade-leite.volume',
             'qualidade-leite.faixa'
