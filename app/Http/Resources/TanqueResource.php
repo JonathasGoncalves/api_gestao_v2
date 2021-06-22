@@ -17,6 +17,7 @@ class TanqueResource extends JsonResource
         return [
             'id'                => $this->id,
             'codigo'            => str_pad(trim($this->codigo), 6, '0', STR_PAD_LEFT),
+            'matricula'         => str_pad(trim($this->matricula), 6, '0', STR_PAD_LEFT),
             'tanque'            => str_pad(trim($this->tanque), 6, '0', STR_PAD_LEFT),
             'latao'             => str_pad(trim($this->latao), 6, '0', STR_PAD_LEFT),
         ];
