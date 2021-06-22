@@ -18,7 +18,7 @@ class tanque_controller extends Controller
 
     //RETORNA TODOS OS TECNICOS
     public function tanques_all() {
-        $tanques = TanqueResource::collection(Tanque::all());
+        $tanques = TanqueResource::collection(Tanque::where('DT_DESLIG', null)->get());
         if (!$tanques) return response()->json(ApiError::errorMassage('Nenhum tanque encontrado', 404));
         return response()->json(['tanques' => $tanques]);
     }
