@@ -59,9 +59,9 @@ class Cooperado extends Model
     {
 
         $cooperados = DB::table('cooperados')
-            ->select('cooperados.codigo_cacal', 'cooperados.nome', 'cooperados.MUNICIPIO');
+            ->select('cooperados.codigo_cacal','cooperados.matricula', 'cooperados.nome', 'cooperados.MUNICIPIO');
         $todos = DB::table('associados')
-        ->select('associados.CODIGO_CACAL', 'associados.NOME', 'associados.MUNICIPIO')
+        ->select('associados.CODIGO_CACAL','associados.matricula', 'associados.NOME', 'associados.MUNICIPIO')
         ->union($cooperados);
         $cooperados_todos = DB::table('tanques')
             ->joinSub($todos, 'todos', function ($join_todos) {
@@ -70,6 +70,7 @@ class Cooperado extends Model
                 })
          ->select(DB::raw(
                 'tanques.id,
+                todos.matricula,
                 todos.nome,
                 todos.CODIGO_CACAL,
                 todos.MUNICIPIO,
