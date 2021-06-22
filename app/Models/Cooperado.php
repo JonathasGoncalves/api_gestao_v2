@@ -59,7 +59,8 @@ class Cooperado extends Model
     {
 
         $cooperados = DB::table('cooperados')
-            ->select('cooperados.codigo_cacal','cooperados.matricula', 'cooperados.nome', 'cooperados.MUNICIPIO');
+            ->select('cooperados.codigo_cacal','cooperados.matricula', 'cooperados.nome', 'cooperados.MUNICIPIO')
+            ->whereIn('cooperados.TPFOR', ['P', 'A']);
         $todos = DB::table('associados')
         ->select('associados.CODIGO_CACAL','associados.matricula', 'associados.NOME', 'associados.MUNICIPIO')
         ->union($cooperados);
