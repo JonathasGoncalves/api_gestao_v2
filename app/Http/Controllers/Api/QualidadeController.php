@@ -19,7 +19,7 @@ class QualidadeController extends Controller
 
     //RETORNA TODOS OS TECNICOS
     public function ultimas_qualidades() {
-        $ultima_data = Qualidade::max('zle_dtfim');
+        $ultima_data = date('Y-m-01', strtotime('-1 months', strtotime(date('Y-m-01'))));
         $qualidades = QualidadeResource::collection($this->qualidade->ultimas_qualidades($ultima_data));
         if (!$qualidades) return response()->json(ApiError::errorMassage('Nenhuma qualidade encontrada', 404));
         return response()->json(['qualidades' => $qualidades]);

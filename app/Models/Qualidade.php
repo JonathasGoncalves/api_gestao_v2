@@ -27,7 +27,7 @@ class Qualidade extends Model
             'qualidade-leite.faixa',
             'qualidade-leite.matricula'
         )
-        ->where('qualidade-leite.zle_dtfim', $ultima_data)
+        ->where('qualidade-leite.mes_ano', $ultima_data)
         ->distinct()
         ->get();
 
