@@ -59,30 +59,16 @@ class Cooperado extends Model
     {
 
         $cooperados = DB::table('cooperados')
-            ->select('cooperados.codigo_cacal','cooperados.matricula', 'cooperados.nome', 'cooperados.MUNICIPIO')
+            ->select('cooperados.codigo_cacal','cooperados.matricula', 'cooperados.NOME', 'cooperados.MUNICIPIO')
             ->whereIn('cooperados.TPFOR', ['P', 'A']);
         $todos = DB::table('associados')
         ->select('associados.CODIGO_CACAL','associados.matricula', 'associados.NOME', 'associados.MUNICIPIO')
-        ->union($cooperados);
-        $cooperados_todos = DB::table('tanques')
-            ->joinSub($todos, 'todos', function ($join_todos) {
-                $join_todos->
-                    On('todos.codigo_cacal', '=', 'tanques.codigo_cacal'); 
-                })
-         ->select(DB::raw(
-                'tanques.id,
-                todos.matricula,
-                todos.nome,
-                todos.CODIGO_CACAL,
-                todos.MUNICIPIO,
-                tanques.tanque,
-                tanques.latao'
-            ))
+        ->union($cooperados)
         ->distinct()
-        ->orderBy('todos.nome')
+        ->orderBy('nome')
         ->get();
         
-        return $cooperados_todos;
+        return $todos;
     }
 }
 

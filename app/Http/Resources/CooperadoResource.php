@@ -15,13 +15,10 @@ class CooperadoResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'                => trim($this->id),
             'codigo_cacal'      => trim(str_pad($this->CODIGO_CACAL, 6, '0', STR_PAD_LEFT)),
             'matricula'         => trim(str_pad($this->matricula, 6, '0', STR_PAD_LEFT)),
-            'nome'              => mb_convert_encoding(ucwords(strtolower(trim($this->nome))), 'UTF-8', 'UTF-8'),
+            'nome'              => mb_convert_encoding(ucwords(strtolower(trim($this->NOME))), 'UTF-8', 'UTF-8'),
             'municipio'         => ucwords(strtolower(trim($this->MUNICIPIO))),
-            'tanque'            => trim(str_pad($this->tanque, 6, '0', STR_PAD_LEFT)),
-            'latao'             => trim(str_pad($this->latao, 6, '0', STR_PAD_LEFT)),
         ];
     }
 }
