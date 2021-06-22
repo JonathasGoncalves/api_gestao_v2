@@ -60,7 +60,7 @@ class Cooperado extends Model
 
         $cooperados = DB::table('cooperados')
             ->select('cooperados.CODIGO_CACAL','cooperados.matricula', 'cooperados.NOME', 'cooperados.MUNICIPIO')
-            ->whereIn('cooperados.TPFOR', ['P', 'A'])
+            ->where('cooperados.TPFOR','P')
             ->distinct()
             ->orderBy('nome')
             ->get();
