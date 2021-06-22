@@ -22,6 +22,7 @@ class QualidadeResource extends JsonResource
             'gordura'       => rtrim($this->gordura),
             'volume'        => rtrim($this->volume), 
             'faixa'         => rtrim($this->faixa),
+            'matricula'     => trim(str_pad($this->matricula, 6, '0', STR_PAD_LEFT))
         ];
     }
 }

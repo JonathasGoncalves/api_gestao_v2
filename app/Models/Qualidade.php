@@ -24,7 +24,8 @@ class Qualidade extends Model
             'qualidade-leite.zz3_est as est',
             'qualidade-leite.gordura',
             'qualidade-leite.volume',
-            'qualidade-leite.faixa'
+            'qualidade-leite.faixa',
+            'qualidade-leite.matricula'
         )
         ->where('qualidade-leite.zle_dtfim', $ultima_data)
         ->distinct()
