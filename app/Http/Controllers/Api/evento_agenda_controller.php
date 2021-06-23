@@ -100,7 +100,7 @@ class evento_agenda_controller extends Controller
 
             $submissao =  Submissao::create([
                 'DataSubmissao' => $Evento_all['data'] . " " . $Evento_all['hora'],
-                //'qualidade_id' => $Evento_all['qualidade_id'],
+                'qualidade_id' => $Evento_all['qualidade_id'],
                 'projeto_id' => $Evento_all['projeto_id'],
                 'tanque_id' => $Evento_all['tanque_id'],
                 'realizada' => 0,
