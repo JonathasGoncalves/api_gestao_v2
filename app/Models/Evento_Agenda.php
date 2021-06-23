@@ -132,7 +132,7 @@ class Evento_Agenda extends Model
                 'eventos_agenda.tanque_id',
                 'eventos_agenda.submissao_id'
             )
-            ->join('submissoes', 'evento_agenda.submissao_id', '=', 'submissoes.id')
+            ->join('submissoes', 'eventos_agenda.submissao_id', '=', 'submissoes.id')
             ->where('submissoes.DataSubmissao', '>=', $data_base)
             ->get();
         return $evento_agenda;
