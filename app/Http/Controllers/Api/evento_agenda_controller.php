@@ -90,16 +90,16 @@ class evento_agenda_controller extends Controller
         return response()->json($data);
     }
 
+
     //Cria um novo evento para a agenda
     public function agendar_evento(Request $request) {
-        
-        $Evento_all = $request->all();
         try {
             DB::beginTransaction();
             $Evento_all = $request->all();
             //criando submissao pertencete a este evento
+
             $submissao =  Submissao::create([
-                'DataSubmissao' => $Evento_all['DataSubmissao'] . " " . $Evento_all['hora'],
+                'DataSubmissao' => $Evento_all['data'] . " " . $Evento_all['hora'],
                 //'qualidade_id' => $Evento_all['qualidade_id'],
                 'projeto_id' => $Evento_all['projeto_id'],
                 'tanque_id' => $Evento_all['tanque_id'],
@@ -109,7 +109,7 @@ class evento_agenda_controller extends Controller
             ]);
 
             $evento =  Evento_Agenda::create([
-                'data' => $Evento_all['DataSubmissao'],
+                'data' => $Evento_all['data'],
                 'hora' => $Evento_all['hora'],
                 'tecnico_id' => $Evento_all['tecnico_id'],
                 'fomulario_id' => $Evento_all['fomulario_id'],

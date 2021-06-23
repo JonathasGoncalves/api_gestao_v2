@@ -9,9 +9,9 @@ class Submissao extends Model
 {
 
     use HasFactory;
-    protected $table = 'submissao';
+    protected $table = 'submissoes';
     protected $fillable = [
-        'DataSubmissao', 'qualidade_id', 'projeto_id', 'tanque_id', 'realizada', 'tecnico_id', 'aproveitamento'
+        'DataSubmissao', 'qualidade_id', 'realizada',  'aproveitamento'
     ];
 
     /**

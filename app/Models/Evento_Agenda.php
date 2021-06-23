@@ -10,7 +10,7 @@ class Evento_Agenda extends Model
 {
     use HasFactory;
 
-    protected $table = 'evento_agenda';
+    protected $table = 'eventos_agenda';
     protected $fillable = [
         'id', 'data', 'hora', 'tecnico_id', 'fomulario_id', 'tanque_id', 'submissao_id'
     ];
