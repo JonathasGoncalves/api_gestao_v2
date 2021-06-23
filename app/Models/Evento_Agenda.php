@@ -57,9 +57,9 @@ class Evento_Agenda extends Model
             ->select('associados.CODIGO_CACAL', 'associados.NOME')
             ->union($cooperados);
 
-        $eventos = DB::table('evento_agenda')
+        $eventos = DB::table('eventos_agenda')
             ->select(
-                'evento_agenda.data',
+                'eventos_agenda.data',
                 'submissao.aproveitamento',
                 'submissao.realizada',
                 'tecnicos.name',
@@ -68,17 +68,17 @@ class Evento_Agenda extends Model
                 'tanques.latao',
                 'formulario.Titulo'
             )
-            ->join('submissao', 'evento_agenda.submissao_id', '=', 'submissao.id')
-            ->join('tecnicos', 'evento_agenda.tecnico_id', '=', 'tecnicos.id')
-            ->join('tanques', 'submissao.tanque_id', '=', 'tanques.id')
-            ->join('opcao_pergunta_submissao', 'submissao.id', '=', 'opcao_pergunta_submissao.submissao_id')
+            ->join('submissoes', 'eventos_agenda.submissao_id', '=', 'submissoes.id')
+            ->join('tecnicos', 'eventos_agenda.tecnico_id', '=', 'tecnicos.id')
+            ->join('tanques', 'submissoes.tanque_id', '=', 'tanques.id')
+            ->join('opcao_pergunta_submissao', 'submissoes.id', '=', 'opcao_pergunta_submissao.submissao_id')
             ->join('opcao_pergunta', 'opcao_pergunta_submissao.opcao_pergunta_id', '=', 'opcao_pergunta.id')
             ->join('pergunta', 'opcao_pergunta.pergunta_id', '=', 'pergunta.id')
             ->join('formulario', 'pergunta.formulario_id', '=', 'formulario.id')
             ->joinSub($todos, 'todos', function ($join) {
                 $join->on('tanques.codigo', '=', 'todos.codigo_cacal');
             })
-            ->where('evento_agenda.data', '>=', $dataReferencia)
+            ->where('eventos_agenda.data', '>=', $dataReferencia)
             ->distinct()
             ->get();
         return $eventos;
@@ -93,21 +93,21 @@ class Evento_Agenda extends Model
             ->select('associados.CODIGO_CACAL', 'associados.NOME')
             ->union($cooperados);
 
-        $eventos = DB::table('evento_agenda')
+        $eventos = DB::table('eventos_agenda')
             ->select(
-                'evento_agenda.data',
-                'submissao.aproveitamento',
-                'submissao.realizada',
+                'eventos_agenda.data',
+                'submissoes.aproveitamento',
+                'submissoes.realizada',
                 'tecnicos.name',
                 'todos.nome',
                 'tanques.tanque',
                 'tanques.latao',
                 'formulario.Titulo'
             )
-            ->join('submissao', 'evento_agenda.submissao_id', '=', 'submissao.id')
-            ->join('tecnicos', 'evento_agenda.tecnico_id', '=', 'tecnicos.id')
-            ->join('tanques', 'submissao.tanque_id', '=', 'tanques.id')
-            ->join('opcao_pergunta_submissao', 'submissao.id', '=', 'opcao_pergunta_submissao.submissao_id')
+            ->join('submissoes', 'eventos_agenda.submissao_id', '=', 'submissoes.id')
+            ->join('tecnicos', 'eventos_agenda.tecnico_id', '=', 'tecnicos.id')
+            ->join('tanques', 'submissoes.tanque_id', '=', 'tanques.id')
+            ->join('opcao_pergunta_submissao', 'submissoes.id', '=', 'opcao_pergunta_submissao.submissao_id')
             ->join('opcao_pergunta', 'opcao_pergunta_submissao.opcao_pergunta_id', '=', 'opcao_pergunta.id')
             ->join('pergunta', 'opcao_pergunta.pergunta_id', '=', 'pergunta.id')
             ->join('formulario', 'pergunta.formulario_id', '=', 'formulario.id')
@@ -122,18 +122,18 @@ class Evento_Agenda extends Model
 
     public function evento_agenda_data($data_base)
     {
-        $evento_agenda = DB::table('evento_agenda')
+        $evento_agenda = DB::table('eventos_agenda')
             ->select(
-                'evento_agenda.id',
-                'evento_agenda.data',
-                'evento_agenda.hora',
-                'evento_agenda.tecnico_id',
-                'evento_agenda.fomulario_id',
-                'evento_agenda.tanque_id',
-                'evento_agenda.submissao_id'
+                'eventos_agenda.id',
+                'eventos_agenda.data',
+                'eventos_agenda.hora',
+                'eventos_agenda.tecnico_id',
+                'eventos_agenda.fomulario_id',
+                'eventos_agenda.tanque_id',
+                'eventos_agenda.submissao_id'
             )
-            ->join('submissao', 'evento_agenda.submissao_id', '=', 'submissao.id')
-            ->where('submissao.DataSubmissao', '>=', $data_base)
+            ->join('submissoes', 'evento_agenda.submissao_id', '=', 'submissoes.id')
+            ->where('submissoes.DataSubmissao', '>=', $data_base)
             ->get();
         return $evento_agenda;
     }

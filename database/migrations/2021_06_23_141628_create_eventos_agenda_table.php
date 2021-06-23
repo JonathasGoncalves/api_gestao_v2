@@ -22,6 +22,7 @@ class CreateEventosAgendaTable extends Migration
             $table->time('hora');
             $table->unsignedInteger('tecnico_id');
             $table->unsignedInteger('fomulario_id');
+            $table->unsignedInteger('projeto_id')->nullable();
             $table->integer('tanque_id');
             $table->unsignedInteger('submissao_id');
             $table->timestamps();
