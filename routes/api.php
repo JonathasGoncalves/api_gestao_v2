@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 //ROTAS AUTENTICADAS
 //middleware(['auth:api'])->
-Route::namespace('Api')->name('api.')->group(function () {
+Route::middleware(['auth:api'])->namespace('Api')->name('api.')->group(function () {
     Route::prefix('tecnico')->group(function () {
         //CADASTRAR TÉCNICO
         Route::post('/novo_tecnico', 'TecnicoController@store')->name('novo_tecnico');
