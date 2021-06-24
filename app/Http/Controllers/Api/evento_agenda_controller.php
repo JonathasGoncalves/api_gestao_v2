@@ -126,7 +126,7 @@ class evento_agenda_controller extends Controller
 
     public function eventos_por_data(Request $request) {
         $data = ['eventos' => EventoAgendaPorDia::collection($this->evento_agenda->where('data', '>=', $request->input('data'))->orderBy('hora')->get())->groupBy('data')];
-        return response()->json($data);
+        return response()->json('$data');
     }
 
     public function pupular_furmulario(Request $request) {

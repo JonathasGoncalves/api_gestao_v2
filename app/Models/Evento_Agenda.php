@@ -127,7 +127,7 @@ class Evento_Agenda extends Model
                 'eventos_agenda.data',
                 'eventos_agenda.hora',
                 'eventos_agenda.tecnico_id',
-                'eventos_agenda.fomulario_id',
+                'eventos_agenda.formulario_id',
                 'eventos_agenda.tanque_id',
                 'eventos_agenda.submissao_id'
             )
