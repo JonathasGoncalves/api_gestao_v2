@@ -12,9 +12,8 @@ class Evento_Agenda extends Model
 
     protected $table = 'eventos_agenda';
     protected $fillable = [
-        'id', 'data', 'hora', 'tecnico_id', 'fomulario_id', 'tanque_id', 'submissao_id'
+        'id', 'data', 'hora', 'tecnico_id', 'formulario_id', 'projeto_id','tanque_id', 'submissao_id'
     ];
-
     /**
      * eventoAgenda tem um tanque
      */
