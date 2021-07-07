@@ -18,6 +18,7 @@ class Qualidade extends Model
         $qualidades = DB::table('qualidade-leite')
         ->select(
             'qualidade-leite.id',
+            'qualidade-leite.mes_ano',
             'qualidade-leite.tanque',
             'qualidade-leite.cbt',
             'qualidade-leite.ccs',
@@ -27,7 +28,7 @@ class Qualidade extends Model
             'qualidade-leite.faixa',
             'qualidade-leite.matricula'
         )
-        ->where('qualidade-leite.mes_ano', $ultima_data)
+        ->where('qualidade-leite.mes_ano', '>=', $ultima_data)
         ->distinct()
         ->get();
 

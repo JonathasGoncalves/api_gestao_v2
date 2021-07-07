@@ -15,6 +15,7 @@ class QualidadeResource extends JsonResource
     {
         return [
             'id'            => rtrim($this->id), 
+            'mes_ano'       => $this->mes_ano,
             'tanque'        => trim(str_pad($this->tanque, 6, '0', STR_PAD_LEFT)), 
             'cbt'           => rtrim($this->cbt),
             'ccs'           => rtrim($this->ccs), 
