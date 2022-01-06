@@ -224,5 +224,9 @@ class evento_agenda_controller extends Controller
         if (!$rps) return response()->json(ApiError::errorMassage('Nenhuma resposta encontrada', 404));
         return response()->json(['rps' => $rps]);
     }
+
+    public function submeter_evento(Request $request) {
+        return $request;
+    }
     
 }
