@@ -79,7 +79,9 @@ Route::middleware(['auth:api'])->namespace('Api')->name('api.')->group(function 
         //LISTA TODAS AS RESPOSTAS_PERGUNTAS ESCRITAS DAS SUBMISSÕES DEPOIS DE CERTA DATA
         Route::post('/resposta_pergunta_por_data', 'evento_agenda_controller@resposta_pergunta_por_data')->name('resposta_pergunta_por_data');
         //LISTA TODAS AS RESPOSTAS_PERGUNTAS SUBMISSAO DAS SUBMISSÕES DEPOIS DE CERTA DATA
-        Route::post('/rps_por_data', 'evento_agenda_controller@rps_por_data')->name('rps_por_data');                   
+        Route::post('/rps_por_data', 'evento_agenda_controller@rps_por_data')->name('rps_por_data'); 
+        //REGISTRA AS RESPOSTAS DE UM EVENTO
+        Route::post('/submeter_evento', 'evento_agenda_controller@submeter_evento')->name('submeter_evento'); 
     });
 
     Route::prefix('cooperado')->group(function () {
